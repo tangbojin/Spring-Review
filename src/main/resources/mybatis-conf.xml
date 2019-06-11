@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeHandlers>
+        <typeHandler handler="cn.tbj.mapper.FavorityTypeHandler"/>
+    </typeHandlers>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <!-- jdbc:mysql:///restaurant 等同于 jdbc:mysql://localhost:3306/restaurant -->
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="cn/tbj/mapper/FoodMapper.xml"/>
+        <mapper resource="cn/tbj/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tbj.dao.UserDao">
+    <insert id="addUser" parameterType="cn.tbj.bean.User">
+--         增加主键回填，便于获取插入后的对象的主键(id)
+        <selectKey keyProperty="id" resultType="int">
+            select last_insert_id();
+        </selectKey>
+        insert into user(username,password,favority) values (#{username},#{password},#{favority,typeHandler=cn.tbj.mapper.FavorityTypeHandler});
+    </insert>
+
+    <select id="getAllUsers" resultType="cn.tbj.bean.User">
+        select * from user;
+    </select>
+</mapper>
